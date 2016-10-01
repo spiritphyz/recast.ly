@@ -25,7 +25,7 @@ class App extends React.Component {
 
   render() {
     return ( <div>
-      <Nav cb={this.changeAllVideos.bind(this)}/>
+      <Nav cb={this.changeAllVideos.bind(this)} search={this.props.search}/>
       <div className="col-md-7">
         <VideoPlayer video={this.state.currentVideo}/>
       </div>
