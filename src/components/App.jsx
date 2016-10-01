@@ -9,6 +9,11 @@ class App extends React.Component {
     };
 
   }
+
+  componentDidMount() {
+    console.log('component did mount');
+    this.props.search({query: ''}, (data) => { this.setState({allVideos: data.items}); } );  
+  }
  
   changeAllVideos(allVideos) {
     this.setState({
@@ -24,6 +29,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('irendered');
     return ( <div>
       <Nav cb={this.changeAllVideos.bind(this)} search={this.props.search}/>
       <div className="col-md-7">
