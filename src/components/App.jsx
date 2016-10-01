@@ -9,9 +9,15 @@ class App extends React.Component {
     };
 
   }
+ 
+  changeAllVideos(allVideos) {
+    this.setState({
+      allVideos: allVideos.items
+    });
+  }
 
   changeAppState(event, video) {
-    console.log(video);
+    //console.log(video);
     this.setState({
       currentVideo: video
     }); 
@@ -19,7 +25,7 @@ class App extends React.Component {
 
   render() {
     return ( <div>
-      <Nav />
+      <Nav cb={this.changeAllVideos.bind(this)}/>
       <div className="col-md-7">
         <VideoPlayer video={this.state.currentVideo}/>
       </div>
