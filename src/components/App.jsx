@@ -5,20 +5,30 @@ class App extends React.Component {
 
     this.state = {
       currentVideo: props.video,
+      fullDescription: '',
       allVideos: window.exampleVideoData
     };
 
   }
-
+  
+  
   componentDidMount() {
-    console.log('component did mount');
-    this.props.search({query: ''}, (data) => { this.setState({allVideos: data.items}); } );  
+    this.props.search({query: ''}, (data) => { this.setState({allVideos: data.items, currentVideo:data.items[0]}); } );
+    this.props.descriptionSearch({vidId: this.state.currentVideo}, (data) => {this.changeFullDescription(data)}) ;
   }
+
+  changeFullDescription(vidSearchResult) {
+      //console.log('video search results:', vidSearchResult);
+      this.setState({
+        fullDescription: vidSearchResult
+      });
+    }
  
   changeAllVideos(allVideos) {
     this.setState({
       allVideos: allVideos.items
     });
+    this.props.descriptionSearch({vidId: this.state.currentVideo}, (data) => {this.changeFullDescription(data)}) ;
   }
 
   changeAppState(event, video) {
@@ -26,14 +36,15 @@ class App extends React.Component {
     this.setState({
       currentVideo: video
     }); 
+    this.props.descriptionSearch({vidId: this.state.currentVideo}, (data) => {this.changeFullDescription(data)}) ;
   }
 
   render() {
-    console.log('irendered');
     return ( <div>
       <Nav cb={this.changeAllVideos.bind(this)} search={this.props.search}/>
       <div className="col-md-7">
         <VideoPlayer video={this.state.currentVideo}/>
+        <VideoDescription video={this.state.currentVideo} fullDescription={this.state.fullDescription} search={this.props.search} />
       </div>
       <div className="col-md-5">
         <VideoList videos={this.state.allVideos} cb={this.changeAppState.bind(this)}/>
