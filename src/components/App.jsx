@@ -13,22 +13,21 @@ class App extends React.Component {
   
   
   componentDidMount() {
-    this.props.search({query: ''}, (data) => { this.setState({allVideos: data.items, currentVideo:data.items[0]}); } );
-    this.props.descriptionSearch({vidId: this.state.currentVideo}, (data) => {this.changeFullDescription(data)}) ;
+    this.props.search({query: ''}, (data) => { this.setState({allVideos: data.items, currentVideo: data.items[0]}); } );
+    this.props.descriptionSearch({vidId: this.state.currentVideo}, (data) => { this.changeFullDescription(data); });
   }
 
   changeFullDescription(vidSearchResult) {
       //console.log('video search results:', vidSearchResult);
-      this.setState({
-        fullDescription: vidSearchResult
-      });
-    }
+    this.setState({
+      fullDescription: vidSearchResult
+    });
+  }
  
   changeAllVideos(allVideos) {
     this.setState({
       allVideos: allVideos.items
     });
-    this.props.descriptionSearch({vidId: this.state.currentVideo}, (data) => {this.changeFullDescription(data)}) ;
   }
 
   changeAppState(event, video) {
@@ -36,7 +35,7 @@ class App extends React.Component {
     this.setState({
       currentVideo: video
     }); 
-    this.props.descriptionSearch({vidId: this.state.currentVideo}, (data) => {this.changeFullDescription(data)}) ;
+    this.props.descriptionSearch({vidId: this.state.currentVideo}, (data) => {this.changeFullDescription(data);}) ;
   }
 
   render() {
