@@ -1,5 +1,4 @@
 class App extends React.Component {
-  
   constructor(props) {
     super(props);
 
@@ -8,9 +7,7 @@ class App extends React.Component {
       fullDescription: '',
       allVideos: window.exampleVideoData
     };
-
   }
-  
   
   componentDidMount() {
     this.props.search({query: ''}, (data) => { this.setState({allVideos: data.items, currentVideo: data.items[0]}); } );

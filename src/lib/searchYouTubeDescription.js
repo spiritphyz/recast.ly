@@ -1,8 +1,6 @@
 var searchYouTubeDescription = (options, callback) => {
-  // TODO
   var url = 'https://www.googleapis.com/youtube/v3/videos';
-  // options.query = options.query || 'sasha rose liberation movement';
-  console.log('vidId:', options.vidId);
+  // console.log('vidId:', options.vidId);
 
   $.ajax({
     url: url,
